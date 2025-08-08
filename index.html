@@ -1,31 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GitHub Pages</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 40px;
-      background-color: #f2f2f2;
-    }
-    h1 {
-      color: #333;
-    }
-    p {
-      color: #555;
-    }
-    footer {
-      margin-top: 40px;
-      color: #888;
-    }
-  </style>
-</head>
-<body>
-  <h1>Chegou cedo demais ☹️</h1>
-</body>
-</html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 
+			body {
+				font-family: "Georgia", serif;
+				background: linear-gradient(
+					to top,
+					#f4c2c2 0%,
+					#f8e8e8 50%,
+					#ffffff 100%
+				);
+				height: 100vh;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.input-screen {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				text-align: center;
+				padding: 20px;
+			}
+
+			.input-screen input {
+				padding: 10px;
+				font-size: 1rem;
+				margin-top: 10px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				text-align: center;
+			}
+
+			.input-screen button {
+				margin-top: 15px;
+				padding: 10px 20px;
+				font-size: 1rem;
+				background-color: #b8798e;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			.hidden {
+				display: none;
+			}
+
+			.container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				padding: 20px;
+				text-align: center;
+				position: relative;
+				z-index: 10;
+			}
+
+			.main-text {
+				font-size: 0.8rem;
+				color: #8b4a6b;
+				margin-bottom: 2rem;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+				animation: fadeInUp 2s ease-out;
+			}
+
+			.footer {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				text-align: center;
+				padding: 20px;
+				background: linear-gradient(transparent, rgba(248, 232, 232, 0.3));
+				z-index: 10;
+			}
+
+			.made-with-love {
+				font-size: 0.5rem;
+				color: #b8798e;
+				animation: fadeInUp 2s ease-out 1s both;
+				margin: 0;
+				font-weight: bold;
+			}
+
+			.heart {
+				position: fixed;
+				color: #ff69b4;
+				font-size: 20px;
+				opacity: 0.7;
+				animation: floatUp 8s linear infinite;
+				z-index: 1;
+				pointer-events: none;
+			}
+
+			@keyframes floatUp {
+				0% {
+					transform: translateY(100vh) rotate(0deg);
+					opacity: 0;
+				}
+				5% {
+					opacity: 0.7;
+				}
+				95% {
+					opacity: 0.7;
+				}
+				100% {
+					transform: translateY(-1000px) rotate(360deg);
+					opacity: 0;
+				}
+			}
+
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Tela de Entrada -->
+		<div class="input-screen" id="inputScreen">
+			<input type="number" id="specialNumber" placeholder="" />
+			<button onclick="checkNumber()">🥳</button>
+		</div>
+
+		<!-- Conteúdo principal oculto inicialmente -->
+		<div class="container hidden" id="mainContent">
+			<h1 class="main-text" id="mainText">X</h1>
+		</div>
+
+		<div class="footer hidden" id="footer">
+			<p class="made-with-love">
+				feito com carinho por <span id="authorName">X</span>
+			</p>
+		</div>
+
+		<script>
+			const mainText = `
+      Para alguem muito especial.
+
+      Que bom que está lendo isso.
+      O espaço no cartão era pequeno,
+      sabe que sempre escrevo demais. 😅
+
+      Espero que seu coração esteja leve.
+      Hoje poderia ser só mais um dia,
+      mas eu quis fazer dele algo especial.
+
+      Te encontrar nesse mundo mudou tudo.
+      Nos conhecemos há pouco tempo, mas
+      nem sei mais como era antes de você
+
+      Você trouxe leveza, risadas sinceras,
+      um brilho diferente na sua companhia.
+
+      Me sinto privilegiado por cada conversa,
+      cada silêncio tranquilo ao seu lado,
+      por cada detalhe que me fez enxergar.
+
+      ✨ Peço que o tempo seja gentil conosco,
+      e que a vida continue nos mantendo perto.
+      Porque, sendo bem honesto,
+      eu adoraria ter você pra sempre 💫
+
+      Mesmo sabendo que, um dia,
+      nossa história pode encontrar seu fim.
+
+      Torço para que, até lá, a gente siga
+      deixando cada capítulo valer a pena.
+      
+      Obrigado por tudo 💖
+      `;
+			const authorName = `Th...o`;
+
+			function checkNumber() {
+				const input = document.getElementById("specialNumber").value;
+				if (input === "23") {
+					// Esconder input
+					document.getElementById("inputScreen").classList.add("hidden");
+
+					// Mostrar conteúdo principal
+					document.getElementById("mainContent").classList.remove("hidden");
+					document.getElementById("footer").classList.remove("hidden");
+
+					document.getElementById("mainText").innerHTML = mainText.replace(
+						/\n/g,
+						"<br>"
+					);
+					document.getElementById("authorName").textContent = authorName;
+
+					// Corações
+					function createHeart() {
+						const heart = document.createElement("div");
+						heart.className = "heart";
+						heart.innerHTML = "♥";
+						heart.style.left = Math.random() * 100 + "vw";
+						heart.style.animationDuration = Math.random() * 8 + 20 + "s";
+						heart.style.fontSize = Math.random() * 10 + 15 + "px";
+
+						const colors = [
+							"#ff69b4",
+							"#ff1493",
+							"#dc143c",
+							"#ff6b9d",
+							"#ffc0cb",
+						];
+						heart.style.color =
+							colors[Math.floor(Math.random() * colors.length)];
+
+						document.body.appendChild(heart);
+
+						setTimeout(() => {
+							heart.remove();
+						}, 28000);
+					}
+
+					setInterval(createHeart, 800);
+				} else {
+					alert("É um número especial para você...");
+				}
+			}
+		</script>
+	</body>
+</html>
